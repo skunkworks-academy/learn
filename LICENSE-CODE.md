@@ -1,7 +1,5 @@
 # Code licence
 
-Copyright © Skunkworks Academy.
+The reusable website scaffolding, configuration and automation in this repository are licensed under the MIT License in the root `LICENSE` file.
 
-The reusable website scaffolding and automation in this repository may be copied and adapted for authorised Skunkworks Academy projects. Redistribution outside authorised Skunkworks Academy work requires written permission.
-
-This software is provided without warranty. Production use remains subject to security, privacy, accessibility and deployment review.
+That licence applies to software code only. Course outlines, instructional text, assessments, lab guides, instructor notes, graphics, recordings and downloadable learning materials remain governed by `LICENSE-CONTENT.md` and any applicable third-party terms.
