@@ -1,0 +1,34 @@
+{
+  "name": "@skunkworks-academy/learning-content-template",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "npm@11",
+  "scripts": {
+    "docusaurus": "docusaurus",
+    "start": "docusaurus start",
+    "build": "docusaurus build",
+    "serve": "docusaurus serve",
+    "clear": "docusaurus clear",
+    "validate:brand": "node scripts/check-brand-terms.mjs",
+    "validate:config": "node scripts/validate-template.mjs",
+    "validate": "npm run validate:brand && npm run validate:config && npm run build"
+  },
+  "dependencies": {
+    "@docusaurus/core": "3.10.2",
+    "@docusaurus/preset-classic": "3.10.2",
+    "@mdx-js/react": "3.1.1",
+    "clsx": "2.1.1",
+    "prism-react-renderer": "2.4.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0"
+  },
+  "devDependencies": {
+    "@docusaurus/faster": "3.10.2",
+    "@docusaurus/module-type-aliases": "3.10.2",
+    "@docusaurus/tsconfig": "3.10.2",
+    "@docusaurus/types": "3.10.2"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  }
+}
