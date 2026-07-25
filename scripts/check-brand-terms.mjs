@@ -5,6 +5,7 @@ import {fileURLToPath} from 'node:url';
 const root = process.cwd();
 const thisFile = relative(root, fileURLToPath(import.meta.url));
 const ignoredDirectories = new Set(['.git', 'node_modules', 'build', '.docusaurus']);
+const ignoredFiles = new Set(['.github/dependabot.yml']);
 const scannedExtensions = new Set(['.md', '.mdx', '.html', '.js', '.jsx', '.ts', '.tsx', '.json', '.yml', '.yaml']);
 const restrictedTerms = ['eco' + 'system'];
 const failures = [];
@@ -13,13 +14,13 @@ function walk(directory) {
   for (const entry of readdirSync(directory)) {
     if (ignoredDirectories.has(entry)) continue;
     const fullPath = join(directory, entry);
-    const relativePath = relative(root, fullPath);
+    const relativePath = relative(root, fullPath).replaceAll('\\', '/');
     const stats = statSync(fullPath);
     if (stats.isDirectory()) {
       walk(fullPath);
       continue;
     }
-    if (relativePath === thisFile || !scannedExtensions.has(extname(entry).toLowerCase())) continue;
+    if (relativePath === thisFile || ignoredFiles.has(relativePath) || !scannedExtensions.has(extname(entry).toLowerCase())) continue;
     const content = readFileSync(fullPath, 'utf8');
     for (const term of restrictedTerms) {
       const expression = new RegExp(`\\b${term}\\b`, 'ig');

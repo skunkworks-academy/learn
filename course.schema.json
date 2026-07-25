@@ -1,0 +1,128 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://skunkworksacademy.com/schemas/course.schema.json",
+  "title": "Skunkworks Academy Course Configuration",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "courseCode",
+    "title",
+    "shortTitle",
+    "summary",
+    "description",
+    "siteUrl",
+    "repository",
+    "locale",
+    "version",
+    "status",
+    "level",
+    "deliveryModes",
+    "estimatedHours",
+    "audience",
+    "prerequisites",
+    "outcomes",
+    "modules",
+    "assessment",
+    "labs",
+    "credential",
+    "registrationUrl",
+    "enrolmentUrl",
+    "loginUrl",
+    "supportEmail",
+    "accessPolicy"
+  ],
+  "properties": {
+    "$schema": {"type": "string"},
+    "schemaVersion": {"type": "integer", "minimum": 1},
+    "courseCode": {"type": "string", "pattern": "^[A-Z0-9][A-Z0-9-]{2,30}$"},
+    "title": {"type": "string", "minLength": 5, "maxLength": 120},
+    "shortTitle": {"type": "string", "minLength": 3, "maxLength": 40},
+    "summary": {"type": "string", "minLength": 40, "maxLength": 220},
+    "description": {"type": "string", "minLength": 60, "maxLength": 600},
+    "siteUrl": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "repository": {"type": "string", "pattern": "^[A-Za-z0-9._-]+$"},
+    "locale": {"type": "string", "pattern": "^[a-z]{2}-[A-Z]{2}$"},
+    "version": {"type": "string"},
+    "status": {"enum": ["draft", "review", "approved", "published", "retired"]},
+    "level": {"enum": ["Foundation", "Intermediate", "Advanced", "Expert"]},
+    "deliveryModes": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {"enum": ["Self-paced", "Instructor-led", "Virtual instructor-led", "Classroom", "Blended", "Workshop"]}
+    },
+    "estimatedHours": {"type": "number", "exclusiveMinimum": 0},
+    "audience": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "prerequisites": {"$ref": "#/$defs/nonEmptyStringArray"},
+    "outcomes": {
+      "type": "array",
+      "minItems": 3,
+      "items": {"type": "string", "minLength": 12}
+    },
+    "modules": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "title", "summary"],
+        "properties": {
+          "id": {"type": "string"},
+          "title": {"type": "string", "minLength": 3},
+          "summary": {"type": "string", "minLength": 20}
+        }
+      }
+    },
+    "assessment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["knowledgeChecks", "finalAssessment", "passMark", "capstone"],
+      "properties": {
+        "knowledgeChecks": {"type": "integer", "minimum": 0},
+        "finalAssessment": {"type": "boolean"},
+        "passMark": {"type": "integer", "minimum": 0, "maximum": 100},
+        "capstone": {"type": "boolean"}
+      }
+    },
+    "labs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["included", "requiresProvisioning"],
+      "properties": {
+        "included": {"type": "boolean"},
+        "requiresProvisioning": {"type": "boolean"}
+      }
+    },
+    "credential": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["type", "badgeEligible"],
+      "properties": {
+        "type": {"type": "string"},
+        "badgeEligible": {"type": "boolean"}
+      }
+    },
+    "registrationUrl": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "enrolmentUrl": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "loginUrl": {"type": "string", "format": "uri", "pattern": "^https://"},
+    "supportEmail": {"type": "string", "format": "email"},
+    "accessPolicy": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["publicContent", "protectedContent", "deliveryPlatform"],
+      "properties": {
+        "publicContent": {"type": "string", "minLength": 20},
+        "protectedContent": {"type": "string", "minLength": 20},
+        "deliveryPlatform": {"type": "string", "minLength": 3}
+      }
+    }
+  },
+  "$defs": {
+    "nonEmptyStringArray": {
+      "type": "array",
+      "minItems": 1,
+      "items": {"type": "string", "minLength": 3}
+    }
+  }
+}
