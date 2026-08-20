@@ -1,0 +1,65 @@
+name: New course implementation
+description: Plan a new Skunkworks Academy learning-content repository from this template
+title: "[COURSE] "
+labels: ["course-development"]
+body:
+  - type: input
+    id: code
+    attributes:
+      label: Course code
+      placeholder: COURSE-101
+    validations:
+      required: true
+  - type: input
+    id: title
+    attributes:
+      label: Course title
+    validations:
+      required: true
+  - type: dropdown
+    id: delivery
+    attributes:
+      label: Delivery model
+      multiple: true
+      options:
+        - Self-paced
+        - Instructor-led virtual
+        - Instructor-led classroom
+        - Blended
+        - Workshop
+    validations:
+      required: true
+  - type: textarea
+    id: audience
+    attributes:
+      label: Audience, prerequisites and learner problem
+    validations:
+      required: true
+  - type: textarea
+    id: outcomes
+    attributes:
+      label: Measurable learning outcomes
+    validations:
+      required: true
+  - type: textarea
+    id: assessment
+    attributes:
+      label: Labs, assessment and completion evidence
+    validations:
+      required: true
+  - type: input
+    id: domain
+    attributes:
+      label: Planned course domain
+      placeholder: course-code.skunkworksacademy.com
+  - type: checkboxes
+    id: controls
+    attributes:
+      label: Required controls
+      options:
+        - label: Registration and enrolment are routed through the central Portal
+          required: true
+        - label: Protected materials will not be committed publicly
+          required: true
+        - label: Accessibility, mobile, security and IP review are included
+          required: true

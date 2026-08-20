@@ -1,0 +1,64 @@
+{
+  "$schema": "./course.schema.json",
+  "schemaVersion": 1,
+  "courseCode": "COURSE-101",
+  "title": "Replace with the course title",
+  "shortTitle": "Course 101",
+  "summary": "Replace this summary with a concise learner-centred description of the course.",
+  "description": "Explain the capability learners will develop, the problems they will solve and the evidence they will produce.",
+  "siteUrl": "https://learn.skunkworksacademy.com",
+  "repository": "learn",
+  "locale": "en-ZA",
+  "version": "1.0",
+  "status": "draft",
+  "level": "Foundation",
+  "deliveryModes": ["Self-paced", "Instructor-led"],
+  "estimatedHours": 12,
+  "audience": [
+    "Technology professionals",
+    "Career-transition learners",
+    "Students and graduates"
+  ],
+  "prerequisites": [
+    "Basic computer literacy",
+    "Reliable internet access",
+    "An active Skunkworks Academy account"
+  ],
+  "outcomes": [
+    "Explain the core concepts and terminology",
+    "Apply the workflow in a controlled practical scenario",
+    "Produce evidence aligned to the assessment rubric",
+    "Identify operational, security and governance considerations"
+  ],
+  "modules": [
+    {"id": "01", "title": "Orientation and foundations", "summary": "Course scope, terminology, learner workflow and success criteria."},
+    {"id": "02", "title": "Core concepts", "summary": "The principal models, components and decision points."},
+    {"id": "03", "title": "Guided implementation", "summary": "A structured implementation using realistic examples."},
+    {"id": "04", "title": "Practical lab", "summary": "Hands-on tasks with evidence capture and validation."},
+    {"id": "05", "title": "Operations and security", "summary": "Operational readiness, troubleshooting, risk and governance."},
+    {"id": "06", "title": "Assessment and capstone", "summary": "Knowledge validation, applied assessment and final submission."}
+  ],
+  "assessment": {
+    "knowledgeChecks": 6,
+    "finalAssessment": true,
+    "passMark": 80,
+    "capstone": true
+  },
+  "labs": {
+    "included": true,
+    "requiresProvisioning": true
+  },
+  "credential": {
+    "type": "Certificate of completion",
+    "badgeEligible": true
+  },
+  "registrationUrl": "https://portal.skunkworksacademy.com/",
+  "enrolmentUrl": "https://portal.skunkworksacademy.com/",
+  "loginUrl": "https://portal.skunkworksacademy.com/",
+  "supportEmail": "training@skunkworks.africa",
+  "accessPolicy": {
+    "publicContent": "Course marketing, outcomes, prerequisites and curriculum preview",
+    "protectedContent": "Lessons, labs, assessments, answer keys, downloads and learner records",
+    "deliveryPlatform": "Skunkworks Academy Portal"
+  }
+}

@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /login/
+
+Sitemap: https://learn.skunkworksacademy.com/sitemap.xml
