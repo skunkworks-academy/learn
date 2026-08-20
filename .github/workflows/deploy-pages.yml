@@ -22,59 +22,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@v4
         with:
           node-version: 22
       - name: Install dependencies
         run: npm install --no-audit --no-fund
       - name: Validate and build
         run: npm run validate
-      - name: Enforce Academy global shell on every generated HTML page
-        run: |
-          python3 - <<'PY'
-          from pathlib import Path
-          import re
-
-          current = 'https://skunkworksacademy.com/assets/academy-navigation.js?v=2026.08.15.1'
-          marker = 'data-skunkworks-global-nav="v10"'
-          loader = f'<script defer src="{current}" {marker}></script>'
-          old_tags = re.compile(r'<script\b[^>]*(?:academy-navigation\.js|data-skunkworks-global-nav|data-skunkworks-global-shell)[^>]*>\s*</script>', re.I)
-          pages = list(Path('build').rglob('*.html'))
-
-          for path in pages:
-              html = path.read_text(encoding='utf-8', errors='ignore')
-              html = old_tags.sub('', html)
-              if re.search(r'</head\s*>', html, re.I):
-                  html = re.sub(r'</head\s*>', f'{loader}</head>', html, count=1, flags=re.I)
-              elif re.search(r'</body\s*>', html, re.I):
-                  html = re.sub(r'</body\s*>', f'{loader}</body>', html, count=1, flags=re.I)
-              else:
-                  raise SystemExit(f'Cannot inject Academy shell into {path}')
-              path.write_text(html, encoding='utf-8')
-
-          if not pages:
-              raise SystemExit('Learning build produced no HTML pages.')
-
-          missing = []
-          duplicate = []
-          for path in pages:
-              html = path.read_text(encoding='utf-8', errors='ignore')
-              if current not in html or marker not in html:
-                  missing.append(str(path))
-              if html.count('academy-navigation.js') > 1:
-                  duplicate.append(str(path))
-
-          if missing:
-              raise SystemExit('Global shell missing from: ' + ', '.join(missing))
-          if duplicate:
-              raise SystemExit('Duplicate global shell loaders in: ' + ', '.join(duplicate))
-
-          print(f'Verified Academy canonical v10 shell on {len(pages)} Learn page(s).')
-          PY
       - name: Configure Pages
-        uses: actions/configure-pages@v6
+        uses: actions/configure-pages@v5
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@v3
         with:
           path: build
 
@@ -87,4 +45,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v4

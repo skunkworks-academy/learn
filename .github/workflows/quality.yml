@@ -20,23 +20,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node.js
-        uses: actions/setup-node@v7
+        uses: actions/setup-node@v4
         with:
           node-version: 22
       - name: Install dependencies
         run: npm install --no-audit --no-fund
       - name: Validate template and production build
-        shell: bash
-        run: |
-          set -o pipefail
-          npm run validate 2>&1 | tee validation.log
-      - name: Upload validation evidence
-        if: always()
-        uses: actions/upload-artifact@v7
+        run: npm run validate
+      - name: Upload static build
+        if: success()
+        uses: actions/upload-artifact@v4
         with:
-          name: validation-evidence
-          path: |
-            validation.log
-            build
-          if-no-files-found: warn
+          name: docusaurus-build
+          path: build
+          if-no-files-found: error
           retention-days: 7

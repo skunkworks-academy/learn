@@ -1,5 +1,4 @@
 {
-  "$schema": "./course.schema.json",
   "schemaVersion": 1,
   "courseCode": "COURSE-101",
   "title": "Replace with the course title",
