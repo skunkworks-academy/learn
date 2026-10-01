@@ -6,6 +6,7 @@ const faviconBlack = 'https://raw.githubusercontent.com/skunkworks-academy/www/r
 const faviconWhite = 'https://raw.githubusercontent.com/skunkworks-academy/www/refs/heads/main/images/favicon-white.png';
 
 const config = {
+  favicon: 'images/favicon-search.png',
   title: `${course.courseCode} | ${course.title}`,
   tagline: course.summary,
   url: course.siteUrl,
@@ -35,11 +36,11 @@ const config = {
   headTags: [
     {
       tagName: 'link',
-      attributes: {rel: 'icon', type: 'image/png', href: faviconBlack, media: '(prefers-color-scheme: light)'},
+      attributes: {rel: 'icon', type: 'image/png', href: 'https://www.skunkworksacademy.com/images/favicon-search.png', media: '(prefers-color-scheme: light)'},
     },
     {
       tagName: 'link',
-      attributes: {rel: 'icon', type: 'image/png', href: faviconWhite, media: '(prefers-color-scheme: dark)'},
+      attributes: {rel: 'icon', type: 'image/png', href: 'https://www.skunkworksacademy.com/images/favicon-search-dark.png', media: '(prefers-color-scheme: dark)'},
     },
     {
       tagName: 'link',
